@@ -74,4 +74,22 @@ public class Article {
     public int hashCode() {     // 동등성 검사에선는 id만 가지고 hash 하면 된다.
         return Objects.hash(id);
     }
+=======
+import java.time.LocalDateTime;
+
+public class Article {
+    //domain 에 관련된 내용
+    private Long id;
+    private String title; // 제목
+    private String content; // 본문
+    private String hashtag; // 해시태그
+
+    //메타 데이터
+    private LocalDateTime createdAt; // 생성일시
+    private String createdBy; // 생성자
+    private LocalDateTime modifiedAt; // 수정일시
+    private String modifiedBy; // 수정자
+
+
+
 }
