@@ -13,6 +13,7 @@ spring:
     username: stephenyi
     password: '1234'
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     database: mysql
     open-in-view: false
@@ -22,7 +23,6 @@ spring:
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100
     defer-datasource-initialization: true
-  h2.console.enabled: true
   sql.init.mode: always
 ---
 

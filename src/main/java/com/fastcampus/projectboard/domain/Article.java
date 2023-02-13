@@ -33,10 +33,15 @@ public class Article {
     private Long id;
 
 
-    @Setter @Column(nullable =false) private String title; // 제목
-    @Setter @Column(nullable =false, length = 10000) private String content; // 본문
+    @Setter
+    @Column(nullable = false)
+    private String title; // 제목
+    @Setter
+    @Column(nullable = false, length = 10000)
+    private String content; // 본문
 
-    @Setter private String hashtag; // 해시태그
+    @Setter
+    private String hashtag; // 해시태그
     @ToString.Exclude
     @OrderBy("id")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
@@ -44,15 +49,24 @@ public class Article {
 
 
     //메타 데이터
-    @CreatedDate @Column(nullable =false) private LocalDateTime createdAt; // 생성일시
-    @CreatedBy @Column(nullable =false, length = 100) private String createdBy; // 생성자
-    @LastModifiedDate @Column(nullable =false) private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy @Column(nullable =false, length = 100) private String modifiedBy; // 수정자
+    @CreatedDate
+    @Column(nullable = false)
+    private LocalDateTime createdAt; // 생성일시
+    @CreatedBy
+    @Column(nullable = false, length = 100)
+    private String createdBy; // 생성자
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime modifiedAt; // 수정일시
+    @LastModifiedBy
+    @Column(nullable = false, length = 100)
+    private String modifiedBy; // 수정자
 
-    protected Article() {}     // 모든 JPA Entity들은 hibernate 구현체를 사용하는 기준으로 설명하자면 기본 생성자를 가지고 있어야한다.
+    protected Article() {
+    }     // 모든 JPA Entity들은 hibernate 구현체를 사용하는 기준으로 설명하자면 기본 생성자를 가지고 있어야한다.
 
 
-    private Article (String title, String content, String hashtag) {
+    private Article(String title, String content, String hashtag) {
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
@@ -60,7 +74,7 @@ public class Article {
 
     //factory 메소드
     public static Article of(String title, String content, String hashtag) {    //의도를 전달, domain Article 생성하려면 title, content, hashtag를 넣어야한다.
-       return new Article(title, content, hashtag);
+        return new Article(title, content, hashtag);
     }
 
     @Override
@@ -74,22 +88,4 @@ public class Article {
     public int hashCode() {     // 동등성 검사에선는 id만 가지고 hash 하면 된다.
         return Objects.hash(id);
     }
-=======
-import java.time.LocalDateTime;
-
-public class Article {
-    //domain 에 관련된 내용
-    private Long id;
-    private String title; // 제목
-    private String content; // 본문
-    private String hashtag; // 해시태그
-
-    //메타 데이터
-    private LocalDateTime createdAt; // 생성일시
-    private String createdBy; // 생성자
-    private LocalDateTime modifiedAt; // 수정일시
-    private String modifiedBy; // 수정자
-
-
-
 }
