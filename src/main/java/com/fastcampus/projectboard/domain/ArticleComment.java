@@ -21,25 +21,22 @@ import java.util.Objects;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy"),
 } )
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //domain 에 관련된 내용
     private Long id;
 
-    @Setter @ManyToOne(optional = false) private Article article; // 게시글 (ID)
-    @Setter @Column(nullable = false, length = 500) private String content; // 본문
+    @Setter
+    @ManyToOne(optional = false)
+    private Article article; // 게시글 (ID)
+    @Setter
+    @Column(nullable = false, length = 500)
+    private String content; // 본문
 
-    //메타 데이터
-    @CreatedDate @Column(nullable =false) private LocalDateTime createdAt; // 생성일시
-    @CreatedBy @Column(nullable =false, length = 100) private String createdBy; // 생성자
-    @LastModifiedDate @Column(nullable =false) private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy @Column(nullable =false, length = 100) private String modifiedBy; // 수정자
-
-
-    protected ArticleComment() {}
+    protected ArticleComment() {
+    }
     // 모든 JPA Entity들은 hibernate 구현체를 사용하는 기준으로 설명하자면 기본 생성자를 가지고 있어야한다.
 
 
@@ -63,20 +60,5 @@ public class ArticleComment {
     public int hashCode() {
         return Objects.hash(id);
     }
-=======
-import java.time.LocalDateTime;
-
-public class ArticleComment {
-    //domain 에 관련된 내용
-    private Long id;
-    private Article article; // 게시글 (ID)
-    private String content; // 본문
-
-    //메타 데이터
-    private LocalDateTime createdAt; // 생성일시
-    private String createdBy; // 생성자
-    private LocalDateTime modifiedAt; // 수정일시
-    private String modifiedBy; // 수정자
-
 
 }
